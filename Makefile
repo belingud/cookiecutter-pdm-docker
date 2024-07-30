@@ -6,28 +6,6 @@ bake: ## bake without inputs and overwrite if exists.
 bake-with-inputs: ## bake with inputs and overwrite if exists.
 	@cookiecutter . --overwrite-if-exists
 
-.PHONY: bake-and-test-deploy
-bake-and-test-deploy: ## For quick publishing to cookiecutter-pdm-example to test GH Actions
-	@rm -rf cookiecutter-pdm-example || true
-	@cookiecutter --no-input . --overwrite-if-exists \
-		author="Florian Maas" \
-		email="fpgmaas@gmail.com" \
-		github_author_handle=fpgmaas \
-		project_name=cookiecutter-pdm-example \
-		project_slug=cookiecutter_pdm_example
-	@cd cookiecutter-pdm-example; pdm install && \
-		git init -b main && \
-		git add . && \
-		pdm run pre-commit install && \
-		pdm run pre-commit run -a || true && \
-		git add . && \
-		pdm run pre-commit run -a || true && \
-		git add . && \
-		git commit -m "init commit" && \
-		git remote add origin git@github.com:fpgmaas/cookiecutter-pdm-example.git && \
-		git push -f origin main
-
-
 .PHONY: install
 install: ## Install the environment
 	@echo "🚀 Creating virtual environment using pyenv and PDM"
@@ -40,9 +18,7 @@ check: ## Run code quality tools.
 	@echo "🚀 Linting code: Running pre-commit"
 	@pdm run pre-commit run -a
 	@echo "🚀 Linting with ruff"
-	@pdm run ruff hooks tests cookiecutter_pdm --config pyproject.toml
-	@echo "🚀 Static type checking: Running mypy"
-	@pdm run mypy
+	@pdm run ruff check tests --config pyproject.toml
 	@echo "🚀 Checking for obsolete dependencies: Running deptry"
 	@pdm run deptry .
 
@@ -63,7 +39,12 @@ clean-build: ## clean build artifacts
 .PHONY: publish
 publish: ## publish a release to pypi.
 	@echo "🚀 Publishing."
-	@pdm publish --username __token__ --password $(PYPI_TOKEN)
+	@pdm publish --username __token__
+
+.PHONY: publish-test
+publish-test: ## publish a release to testpypi
+	@echo "🚀 Publishing to testpypi."
+	@pdm publish -r testpypi --username __token__
 
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.
@@ -81,3 +62,4 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
 .DEFAULT_GOAL := help
+
