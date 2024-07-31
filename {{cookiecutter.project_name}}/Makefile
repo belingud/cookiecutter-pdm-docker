@@ -11,11 +11,18 @@ check: ## Run code quality tools.
 	@echo "🚀 Linting code: Running pre-commit"
 	@pdm run pre-commit run -a
 	@echo "🚀 Static type checking: Running mypy"
-	@pdm run mypy
+	@pdm run ruff check . --config pyproject.toml
 {%- if cookiecutter.deptry == 'y' %}
 	@echo "🚀 Checking for obsolete dependencies: Running deptry"
 	@pdm run deptry .
 {%- endif %}
+
+.PHONY: format
+format: ## Format code with ruff and isort
+	@echo "🚀 Formatting code: Running ruff"
+	@pdm run ruff check --fix . --config pyproject.toml
+	@echo "🚀 Formatting code: Running isort"
+	@pdm run isort .
 
 .PHONY: test
 test: ## Test the code with pytest

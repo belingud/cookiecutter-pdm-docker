@@ -12,10 +12,10 @@
 
 ---
 
-[![Release](https://img.shields.io/github/v/release/fpgmaas/cookiecutter-pdm)](https://pypi.org/project/cookiecutter-pdm/)
-[![Build status](https://img.shields.io/github/actions/workflow/status/fpgmaas/cookiecutter-pdm/main.yml?branch=main)](https://github.com/fpgmaas/cookiecutter-pdm/actions/workflows/main.yml?query=branch%3Amain)
+[![Release](https://img.shields.io/github/v/release/belingud/cookiecutter-pdm-docker)](https://pypi.org/project/cookiecutter-pdm/)
+[![Build status](https://img.shields.io/github/actions/workflow/status/belingud/cookiecutter-pdm-docker/main.yml?branch=main)](https://github.com/belingud/cookiecutter-pdm-docker/actions/workflows/main.yml?query=branch%3Amain)
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/cookiecutter-pdm)](https://pypi.org/project/cookiecutter-pdm/)
-[![License](https://img.shields.io/github/license/fpgmaas/cookiecutter-pdm)](https://img.shields.io/github/license/fpgmaas/cookiecutter-pdm)
+[![License](https://img.shields.io/github/license/belingud/cookiecutter-pdm-docker)](https://img.shields.io/github/license/belingud/cookiecutter-pdm-docker)
 
 This is a modern Cookiecutter template that can be used to initiate a Python project with all the necessary tools for development, testing, and deployment. It supports the following features:
 
@@ -29,7 +29,7 @@ This is a modern Cookiecutter template that can be used to initiate a Python pro
 - Compatibility testing for multiple versions of Python with [Tox](https://tox.wiki/en/latest/)
 - Containerization with [Docker](https://www.docker.com/)
 
-An example of a repository generated with this package can be found [here](https://github.com/fpgmaas/cookiecutter-pdm-example).
+An example of a repository generated with this package can be found [here](https://github.com/belingud/cookiecutter-pdm-docker-example).
 
 ## Quickstart
 
@@ -46,7 +46,7 @@ Github repository to the `cookiecutter` command:
 
 ``` bash
 pip install cookiecutter
-cookiecutter https://github.com/fpgmaas/cookiecutter-pdm.git
+cookiecutter https://github.com/belingud/cookiecutter-pdm-docker.git
 ```
 
 Create a repository on GitHub, and then run the following commands, replacing `<project-name>`, with the name that you gave the Github repository and

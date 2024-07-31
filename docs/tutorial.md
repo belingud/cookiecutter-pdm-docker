@@ -53,7 +53,7 @@ command:
 
 ``` bash
 pip install cookiecutter-pdm
-cookiecutter https://github.com/fpgmaas/cookiecutter-pdm.git
+cookiecutter https://github.com/belingud/cookiecutter-pdm-docker.git
 ```
 
 ## Step 4: Set up your Github repository

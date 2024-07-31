@@ -1,11 +1,11 @@
 site_name: cookiecutter-pdm
-repo_url: https://github.com/fpgmaas/cookiecutter-pdm
+repo_url: https://github.com/belingud/cookiecutter-pdm-docker
 site_url: https://fpgmaas.github.io/cookiecutter-pdm
 site_description: A cookiecutter template for Python projects that use PDM for its dependency management
-site_author: Florian Maas
+site_author: belingud
 edit_uri: edit/main/docs/
-repo_name: fpgmaas/cookiecutter-pdm
-copyright: Maintained by <a href="https://fpgmaas.com">Florian</a>.
+repo_name: belingud/cookiecutter-pdm-docker
+#copyright:
 
 nav:
   - Home: index.md
@@ -49,7 +49,7 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/fpgmaas/cookiecutter-pdm
+      link: https://github.com/belingud/cookiecutter-pdm-docker
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/cookiecutter-pdm/
 markdown_extensions:

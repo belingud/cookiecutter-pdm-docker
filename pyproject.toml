@@ -1,42 +1,50 @@
 [project]
-name = "cookiecutter-pdm"
+name = "cookiecutter-pdm-docker"
 description = "A python cookiecutter application to create a new python project that uses PDM to manage its dependencies."
 authors = [
-    {name = "Florian Maas", email = "info@fpgmaas.com"},
+    { name = "belingud", email = "im.victor@qq.com" },
 ]
 readme = "README.md"
 keywords = ['cookiecutter', 'template', 'PDM']
 dynamic = ["version"]
-license = {text = "MIT"}
+license = { text = "MIT" }
 requires-python = ">=3.8,<4.0"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
 dependencies = [
-"cookiecutter>=2.1.1"
+    "cookiecutter>=2.1.1"
 ]
 
-[tool.pdm.version]
-source = "scm"
-
-[tool.pdm.build]
-excludes = ["./**/.git"]
-package-dir = "."
-includes = ["cookiecutter_pdm"]
-source-includes = [
-  '{{cookiecutter.project_name}}/**/*',
-  'cookiecutter.json',
-  'hooks/*'
-  ]
-
-[project.scripts]
-ccpdm = 'cookiecutter_pdm.cli:main'
-
 [project.urls]
-Repository = "https://github.com/fpgmaas/cookiecutter-pdm"
-Documentation = "https://fpgmaas.github.io/cookiecutter-pdm/"
-Homepage = "https://fpgmaas.github.io/cookiecutter-pdm/"
+Repository = "https://github.com/belingud/cookiecutter-pdm-docker"
+Homepage = "https://github.com/belingud/cookiecutter-pdm-docker"
 
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
+
+[project.scripts]
+ccpdm = 'cookiecutter_pdm.cli:main'
+
+[tool.pdm.version]
+source = "scm"
+
+[tool.pdm.scripts]
+bump = "bump2version {args}"
+
+[tool.pdm.build]
+excludes = ["./**/.git", "tests", ".idea", ".vscode", ".venv", "pdm.lock", ".gitignore", "var"]
+package-dir = "."
+includes = ["cookiecutter_pdm"]
+source-includes = [
+    '{{cookiecutter.project_name}}/**/*',
+]
 
 [tool.pdm.dev-dependencies]
 dev = [
@@ -45,19 +53,22 @@ dev = [
     "pytest-cookies>=0.6.1",
     "tox>=3.25.1",
     "deptry>=0.6.4",
-    "mypy>=0.991",
     "pytest-cov>=4.0.0",
     "ruff>=0.0.235",
+    "bump2version>=1.0.1",
 ]
 docs = [
     "mkdocs>=1.4.2",
     "mkdocs-material>=8.5.10",
 ]
 
-[tool.black]
-line-length = 120
-target-version = ['py37']
-preview = true
+[tool.pytest.ini_options]
+addopts = "-rsxX -l --tb=short --strict"
+testpaths = ["tests/"]
+python_files = ["tests/*/test*.py"]
+
+[tool.pdm]
+distribution = true
 
 [tool.coverage.report]
 skip_empty = true
@@ -66,19 +77,9 @@ skip_empty = true
 branch = true
 source = ["cookiecutter_pdm"]
 
-[tool.mypy]
-files = ['cookiecutter_pdm']
-disallow_untyped_defs = "True"
-disallow_any_unimported = "True"
-no_implicit_optional = "True"
-check_untyped_defs = "True"
-warn_return_any = "True"
-warn_unused_ignores = "True"
-show_error_codes = "True"
-
 [tool.deptry]
 extend_exclude = [
-  "{{cookiecutter.project_name}}"
+    "{{cookiecutter.project_name}}"
 ]
 ignore_obsolete = ["cookiecutter"]
 
