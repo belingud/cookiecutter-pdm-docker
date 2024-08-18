@@ -1,6 +1,6 @@
 [project]
 name = "{{cookiecutter.project_slug}}"
-dynamic = ["version"]
+version = "0.0.1"
 description = "{{cookiecutter.project_description}}"
 authors = [
     {name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}"},
@@ -13,9 +13,6 @@ requires-python = ">=3.8,<4.0"
 dependencies = []
 license = {text = "{{cookiecutter.open_source_license}}"}
 keywords = ['python']
-
-[tool.pdm.version]
-source = "scm"
 
 [project.urls]
 Homepage = "https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/"
@@ -119,3 +116,4 @@ source = ["{{cookiecutter.project_slug}}"]
 addopts = "-rsxX -l --tb=short --strict"
 testpaths = ["tests/"]
 python_files = ["tests/*/test*.py"]
+markers = ["skipif: conditionally skip tests"]
